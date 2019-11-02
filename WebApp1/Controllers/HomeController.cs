@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Dados.Interfaces;
+using Dados.Login;
 using Microsoft.AspNetCore.Mvc;
 using WebApp1.Models;
 
@@ -10,8 +12,14 @@ namespace WebApp1.Controllers
 {
     public class HomeController : Controller
     {
+        ILoginData _loginData;
+        public HomeController(ILoginData loginData)
+        {
+            _loginData = loginData;
+        }
         public IActionResult Index()
         {
+            string teste = _loginData.TestaConexao();
             return View();
         }
 
